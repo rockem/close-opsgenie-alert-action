@@ -1,5 +1,8 @@
 name: close-opsgenie-alert
 description: Close an OpsGenie Alert
+branding:
+  icon: 'bell-off'
+  color: 'gray-dark'
 inputs:
   api_key:
     description: OpsGenie API key

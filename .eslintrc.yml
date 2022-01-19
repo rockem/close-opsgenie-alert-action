@@ -3,3 +3,7 @@ parserOptions:
 
 env:
   es6: true
+
+ignorePatterns:
+  - dist
+  - node_modules

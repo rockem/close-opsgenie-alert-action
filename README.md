@@ -22,7 +22,7 @@ An added note to the close operation.
 
 ## Example usage
 ```
-uses: rockem/close-opsgenie-alert-action@v1.1
+uses: rockem/close-opsgenie-alert-action@v1.2
 with:
     api_key: ${{ secrets.OPSGENIE_API_KEY }}
     alias: alert-alias

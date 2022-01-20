@@ -27,5 +27,5 @@ jobs:
         run: |
           git config --global user.email "eli.segal@gmail.com"
           git config --global user.name "rockem"
-          git commit -am "Updated compilation of index.js"
+          git diff-index --quiet HEAD || git commit -am "Updated compilation of index.js"
           git push

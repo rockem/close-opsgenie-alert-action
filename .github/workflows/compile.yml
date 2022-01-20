@@ -1,4 +1,4 @@
-name: lint
+name: Compile index.js
 
 on:
   push:
@@ -20,3 +20,8 @@ jobs:
         env:
           NODE_OPTIONS: --openssl-legacy-provider
         run: ncc build index.js --license licenses.txt
+
+      - name: Commit new index.js
+        run: |
+          git commit -am "Updated compilation of index.js"
+          git push

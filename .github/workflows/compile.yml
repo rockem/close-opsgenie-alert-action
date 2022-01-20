@@ -23,7 +23,7 @@ jobs:
 
       - name: Commit new index.js
         run: |
-          git config --global user.email "ci@github.com"
-          git config --global user.name "GitHub CI"
+          git config --global user.email "eli.segal@gmail.com"
+          git config --global user.name "rockem"
           git commit -am "Updated compilation of index.js"
           git push

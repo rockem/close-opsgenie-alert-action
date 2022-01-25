@@ -1,4 +1,4 @@
-name: close-opsgenie-alert
+name: Close OpsGenie Alert
 description: Close an OpsGenie Alert
 branding:
   icon: 'bell-off'

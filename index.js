@@ -1,9 +1,17 @@
 const core = require('@actions/core');
 const opsgenie = require('opsgenie-sdk');
 
-opsgenie.configure({
-    'api_key': core.getInput('api_key')
-});
+const EU_URL = 'https://api.eu.opsgenie.com';
+
+const createConnectionDetails = () => {
+    const connectionDetails = {'api_key': core.getInput('api_key')}
+    if (core.getInput('using_eu_url').trim() === 'true') {
+        connectionDetails.set('host', EU_URL)
+    }
+    return connectionDetails;
+}
+
+opsgenie.configure(createConnectionDetails());
 
 const alert_identifier = {
     identifier: core.getInput('alias'),

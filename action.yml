@@ -7,6 +7,10 @@ inputs:
   api_key:
     description: OpsGenie API key
     required: true
+  use_eu_url:
+    description: Boolean. true if using Opsgenie EU API endpoint
+    required: false
+    default: 'false'
   alias:
     description: Alias of the alert to close
     required: true

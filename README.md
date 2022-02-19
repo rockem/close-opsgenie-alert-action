@@ -1,4 +1,6 @@
 # Close OpsGenie alert action
+[![Tests](https://github.com/rockem/close-opsgenie-alert-action/actions/workflows/test.yml/badge.svg)](https://github.com/rockem/close-opsgenie-alert-action/actions/workflows/test.yml)
+[![Compile index.js](https://github.com/rockem/close-opsgenie-alert-action/actions/workflows/compile.yml/badge.svg)](https://github.com/rockem/close-opsgenie-alert-action/actions/workflows/compile.yml)
 
 This action closes OpsGenie alert by providing an alert alias
 
@@ -19,6 +21,11 @@ The actor of the close operation, by default it will be `github-action`
 `note`
 
 An added note to the close operation.
+
+`using_eu_url`
+
+Default value is false. Must set to true if required OpsGenie API endpoint is 'https://api.eu.opsgenie.com'.
+
 
 ## Example usage
 ```

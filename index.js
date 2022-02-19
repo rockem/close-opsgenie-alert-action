@@ -2,7 +2,7 @@ const core = require('@actions/core');
 const opsgenie = require('opsgenie-sdk');
 const { connectionOptions } = require('./src/connection');
 
-opsgenie.configure(connectionOptions(core.getInput('api_key'), false));
+opsgenie.configure(connectionOptions(core.getInput('api_key'), core.getInput('using_eu')));
 
 const alert_identifier = {
     identifier: core.getInput('alias'),

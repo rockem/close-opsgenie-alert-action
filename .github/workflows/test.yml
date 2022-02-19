@@ -41,11 +41,15 @@ jobs:
           message: Close alert test alert
           priority: P5
 
+      - run: sleep 1
+
       - name: Close OpsGenie Alert
         uses: ./
         with:
           api_key: ${{ secrets.OPSGENIE_API_KEY }}
           alias: ${{ env.ALERT_ALIAS }}
+
+      - run: sleep 1
 
       - name: Assert alert closed
         env:

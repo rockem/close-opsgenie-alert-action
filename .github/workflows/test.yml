@@ -1,0 +1,56 @@
+name: Tests
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+jobs:
+  unit-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+      - run: yarn
+      - run: yarn test
+
+  integration-test:
+    needs: unit-tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+      - run: yarn
+      - run: yarn compile
+
+      - name: Set alert values
+        run: |
+          export ALIAS=create-alert-int-test-$(date +%s)
+          echo "ALERT_ALIAS=$(echo -n $ALIAS)" >> $GITHUB_ENV
+
+      - name: Create OpsGenie Alert
+        uses: rockem/create-opsgenie-alert-action@v1
+        with:
+          api_key: ${{ secrets.OPSGENIE_API_KEY }}
+          alias: ${{ env.ALERT_ALIAS }}
+          message: Close alert test alert
+          priority: P5
+
+      - name: Close OpsGenie Alert
+        uses: ./
+        with:
+          api_key: ${{ secrets.OPSGENIE_API_KEY }}
+          alias: ${{ env.ALERT_ALIAS }}
+
+      - name: Assert alert closed
+        env:
+          OPSGENIE_API_KEY: ${{ secrets.OPSGENIE_API_KEY }}
+        run: |
+          node ./src/assert_alert_created_with.js \
+          ${{ env.ALERT_ALIAS }}

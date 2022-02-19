@@ -7,7 +7,7 @@
   "license": "MIT",
   "scripts": {
     "compile": "NODE_OPTIONS=--openssl-legacy-provider ncc build index.js --license licenses.txt",
-    "lint": "eslint . --fix --ext .js"
+    "lint": "eslint . --ext .js"
   },
   "engines": {
     "node": ">=16"

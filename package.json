@@ -7,7 +7,7 @@
   "license": "MIT",
   "scripts": {
     "compile": "ncc build index.js --license licenses.txt",
-    "test": "mock",
+    "test": "mocha",
     "lint": "eslint . --ext .js",
     "preversion": "git pull"
   },

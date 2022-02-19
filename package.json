@@ -6,8 +6,10 @@
   "author": "Eli Segal <eli.segal@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "compile": "NODE_OPTIONS=--openssl-legacy-provider ncc build index.js --license licenses.txt",
-    "lint": "eslint . --ext .js"
+    "compile": "ncc build index.js --license licenses.txt",
+    "test": "mock",
+    "lint": "eslint . --ext .js",
+    "preversion": "git pull"
   },
   "engines": {
     "node": ">=16"

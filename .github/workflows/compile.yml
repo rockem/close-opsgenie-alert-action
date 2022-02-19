@@ -1,4 +1,4 @@
-name: Compile index.js
+name: Compile
 
 on:
   push:
@@ -15,13 +15,11 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: '17'
-      - run: yarn install
-      - run: yarn global add @vercel/ncc
 
-      - name: Compile all into index.js
-        env:
-          NODE_OPTIONS: --openssl-legacy-provider
-        run: ncc build index.js --license licenses.txt
+      - name: Compile action
+        run: |
+          yarn install --frozen-lockfile
+          yarn compile
 
       - name: Commit new index.js
         run: |

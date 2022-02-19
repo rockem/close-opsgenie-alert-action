@@ -19,7 +19,6 @@ jobs:
       - run: yarn test
 
   integration-test:
-    needs: unit-tests
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -52,5 +51,5 @@ jobs:
         env:
           OPSGENIE_API_KEY: ${{ secrets.OPSGENIE_API_KEY }}
         run: |
-          node ./src/assert_alert_created_with.js \
+          node ./test/assert_alert_created_with.js \
           ${{ env.ALERT_ALIAS }}

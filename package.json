@@ -17,6 +17,8 @@
     "opsgenie-sdk": "^0.5.0"
   },
   "devDependencies": {
-    "eslint": "^8.7.0"
+    "chai": "^4.3.6",
+    "eslint": "^8.7.0",
+    "mocha": "^9.2.1"
   }
 }

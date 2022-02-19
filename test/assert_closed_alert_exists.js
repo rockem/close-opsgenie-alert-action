@@ -1,4 +1,5 @@
 const opsgenie = require('opsgenie-sdk');
+const { expect } = require('chai');
 
 opsgenie.configure({
   'api_key': process.env.OPSGENIE_API_KEY
@@ -12,9 +13,6 @@ opsgenie.alertV2.list({ query }, function (error, alerts) {
     console.log(`ERROR: ${error.message}`);
     process.exit(1);
   } else {
-    if (alerts.data.length === 0) {
-      console.log(`ERROR: Failed to find closed alert with alias [${alias}]`);
-      process.exit(2);
-    }
+    expect(alerts.data, `Failed to find closed alert with alias [${alias}]`).to.not.be.empty;
   }
 });

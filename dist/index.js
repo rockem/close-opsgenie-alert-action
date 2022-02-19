@@ -55603,6 +55603,26 @@ define(function () {
 
 /***/ }),
 
+/***/ 9243:
+/***/ ((module) => {
+
+const OPSGENIE_EU_URL = 'https://api.eu.opsgenie.com';
+
+const createConnectionOptions = (api_key, using_eu_url) => {
+  const connectionDetails = {'api_key': api_key}
+  if (using_eu_url === 'true') {
+    connectionDetails.host = OPSGENIE_EU_URL;
+  }
+  return connectionDetails;
+}
+
+module.exports = {
+  connectionOptions: createConnectionOptions,
+  OPSGENIE_EU_URL
+}
+
+/***/ }),
+
 /***/ 6884:
 /***/ ((module) => {
 
@@ -55994,27 +56014,27 @@ var __webpack_exports__ = {};
 (() => {
 const core = __nccwpck_require__(9699);
 const opsgenie = __nccwpck_require__(3380);
+const { connectionOptions } = __nccwpck_require__(9243);
 
-opsgenie.configure({
-    'api_key': core.getInput('api_key')
-});
+opsgenie.configure(
+  connectionOptions(core.getInput('api_key'), core.getInput('using_eu_url')));
 
-const alert_identifier = {
-    identifier: core.getInput('alias'),
-    identifierType: "alias"
+const alertIdentifier = {
+  identifier: core.getInput('alias'),
+  identifierType: "alias"
 };
 
-const close_alert_data = {
-    note: core.getInput('note'),
-    user: core.getInput('user')
+const closeAlertData = {
+  note: core.getInput('note'),
+  user: core.getInput('user')
 };
 
-opsgenie.alertV2.close(alert_identifier, close_alert_data, function (error) {
-    if (error) {
-        core.setFailed(`ERROR: ${error.message}`);
-    } else {
-        console.log(`Request sent for closing alert with alias: ${core.getInput('alias')}`);
-    }
+opsgenie.alertV2.close(alertIdentifier, closeAlertData, function (error) {
+  if (error) {
+    core.setFailed(error.message);
+  } else {
+    console.log(`Request sent for closing alert with alias: ${core.getInput('alias')}`);
+  }
 });
 
 

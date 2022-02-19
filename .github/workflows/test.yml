@@ -47,6 +47,7 @@ jobs:
         uses: ./
         with:
           api_key: ${{ secrets.OPSGENIE_API_KEY }}
+          using_eu_url: false
           alias: ${{ env.ALERT_ALIAS }}
 
       - run: sleep 1

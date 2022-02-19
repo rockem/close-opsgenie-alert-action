@@ -17,7 +17,7 @@ const closeAlertData = {
 
 opsgenie.alertV2.close(alertIdentifier, closeAlertData, function (error) {
   if (error) {
-    core.setFailed(`ERROR: ${error.message}`);
+    core.setFailed(error.message);
   } else {
     console.log(`Request sent for closing alert with alias: ${core.getInput('alias')}`);
   }

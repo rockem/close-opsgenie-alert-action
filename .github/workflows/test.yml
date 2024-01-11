@@ -41,7 +41,7 @@ jobs:
           message: Close alert test alert
           priority: P5
 
-      - run: sleep 1
+      - run: sleep 2
 
       - name: Close OpsGenie Alert
         uses: ./
@@ -50,7 +50,7 @@ jobs:
           using_eu_url: false
           alias: ${{ env.ALERT_ALIAS }}
 
-      - run: sleep 1
+      - run: sleep 5
 
       - name: Assert alert closed
         env:
